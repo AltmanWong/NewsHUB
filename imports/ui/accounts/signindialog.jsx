@@ -7,7 +7,7 @@ export default class signindialog extends React.Component{
 	constructor(props){
 		super();
 		this.state = {
-			open: false	
+			open: false
 		}
 		this.handleToggle = this.handleToggle.bind(this);
 	}
@@ -15,7 +15,7 @@ export default class signindialog extends React.Component{
 	handleToggle(){
 		this.setState({open: !this.state.open});
 	}
-	
+
 	render(){
 		return(
 			<div>

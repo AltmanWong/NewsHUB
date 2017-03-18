@@ -1,0 +1,59 @@
+body{
+	background-image: url("/images/bg.jpg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+
+#app{
+	font-family: 'Oswald', sans-serif;
+}
+
+#newscard{
+	background-color: #FFFFFF;
+	padding: 16px;
+	border-radius: 5px;
+	box-shadow: 1px 1px 1px #999999;
+}
+
+#waiting{
+	background-color: #FFFFFF;
+	padding: 16px;
+	border-radius: 5px;
+	box-shadow: 1px 1px 1px #999999;
+}
+
+#author{
+	color: #CCCCCC;
+}
+
+#socialnetwork{
+	margin-top: 16px;
+}
+
+#contents{
+	font-size: 16px;
+}
+
+#share{
+	color: blue;
+	vertical-align: bottom
+}
+
+#footer{
+	background-color: #FEFEFE;
+	color: #CCCCCC;
+}
+
+#footer-contents{
+	margin: 8px;
+	font-size: 20px;
+}
+
+#footer-right{
+	text-align: right;
+}
+
+#createaccount{
+	text-align: center;
+}

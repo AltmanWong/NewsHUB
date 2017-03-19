@@ -13,10 +13,20 @@ export default class floatbutton extends React.Component{
 			open: false
 		}
 		this.handleToggle = this.handleToggle.bind(this);
+		this.close = this.close.bind(this);
+		this.open = this.open.bind(this);
 	}
 
 	handleToggle(){
 		this.setState({open: !this.state.open});
+	}
+
+	close(){
+		this.setState({open: false});
+	}
+
+	open(){
+		this.setState({open: true});
 	}
 
 	render(){
@@ -38,10 +48,10 @@ export default class floatbutton extends React.Component{
 		      <ChildButton
 		        icon="ion-log-in"
 		        label="Sign in to NewsHUB"
-		        onClick={this.handleToggle}
+		        onClick={this.open}
 		      />
 
-		      <Signindialog show = {this.state.open} onHide = {this.handleToggle} />
+		      <Signindialog show = {this.state.open} onHide = {this.close} />
 		    </Menu>
 		)
 	}

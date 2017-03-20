@@ -2,7 +2,7 @@
 This is a project using meteor as the development tools 
 
 # How to host
-To host the web, install meteor from meteor website
+To host the web, install meteor from [Meteor](https://www.meteor.com/install) website
 
 # Dependency
 This project used these npm dependencies:

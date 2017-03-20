@@ -15,5 +15,5 @@ This project used these npm dependencies:
   - bcrypt
   
 ```
-npm install --save react react-dom react-bootstrap react-mfb babel-runtime react-addons-pure-render-mixin bcrypt
+meteor npm install --save react react-dom react-bootstrap react-mfb babel-runtime react-addons-pure-render-mixin bcrypt
 ```

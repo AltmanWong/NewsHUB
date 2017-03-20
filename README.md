@@ -12,7 +12,8 @@ This project used these npm dependencies:
   - react-mfb
   - babel-runtime
   - react-addons-pure-render-mixin
+  - bcrypt
   
 ```
-npm install --save react react-dom react-bootstrap react-mfb babel-runtime react-addons-pure-render-mixin
+npm install --save react react-dom react-bootstrap react-mfb babel-runtime react-addons-pure-render-mixin bcrypt
 ```

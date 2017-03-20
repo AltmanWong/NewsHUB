@@ -40,11 +40,11 @@ export default class floatbutton extends React.Component{
 		      <ChildButton
 		        icon="ion-social-github"
 		        label="View on Github"
-		        href="https://github.com/altmanwong/" />
+		        href="https://github.com/altmanwong/project_meteor" />
 		      <ChildButton
 		        icon="ion-social-facebook"
 		        label="Like us on Facebook"
-		        href="https://github.com/nobitagit" />
+		        href="#" />
 		      <ChildButton
 		        icon="ion-log-in"
 		        label="Sign in to NewsHUB"

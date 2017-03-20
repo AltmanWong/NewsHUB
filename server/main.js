@@ -8,7 +8,7 @@ var categories = ["business", "entertainment", "gaming", "general", "music", "sc
 var language = ["en", "de", "fr"];
 var country = ["au", "de", "gb", "in", "it", "us"];
 
-var schedule = later.parse.recur().on(0).minute();
+var schedule = later.parse.recur().on(5).minute();
 var hourlyCache = new ScheduledTask(schedule, apicaching);
 
 import {Meteor} from 'meteor/meteor';
@@ -27,7 +27,7 @@ function apicaching(){
 			        var dbCache = Cache.findOne({source: articles.source});
 			        if(dbCache === undefined){
 			       		console.log("INSERT: " + j + " " + articles.category + " " + articles.source);
-			          	Cache.insert(article_urls);
+			          	Cache.insert(articles);
 			        }else{
 			            console.log("UPDATE: " + j + " " + articles.category + " " + articles.source);
 			          	Cache.update(dbCache, articles);

@@ -52,7 +52,8 @@ export default class createaccountdialog extends React.Component{
 			Accounts.createUser({
 				name: this.name.value,
 				email: this.email.value,
-				password: this.password.value
+				password: this.password.value,
+				preferredfeed: []
 			});
 
 			//open the response modal

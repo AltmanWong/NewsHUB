@@ -2,6 +2,7 @@ import React from 'react';
 import { Menu, MainButton, ChildButton } from 'react-mfb'
 
 import Signindialog from '../ui/accounts/signindialog.jsx';
+import Settingdialog from '../ui/accounts/settingdialog.jsx';
 
 import 'react-mfb/mfb.css'
 import '../stylesheets/ionicons.css'
@@ -10,7 +11,8 @@ export default class floatbutton extends React.Component{
 	constructor(props){
 		super();
 		this.state = {
-			open: false
+			open_login: false,
+			open_setting: false;
 		}
 		this.handleToggle = this.handleToggle.bind(this);
 		this.close = this.close.bind(this);
@@ -18,15 +20,23 @@ export default class floatbutton extends React.Component{
 	}
 
 	handleToggle(){
-		this.setState({open: !this.state.open});
+		this.setState({open_login: !this.state.open});
 	}
 
-	close(){
-		this.setState({open: false});
+	close_login(){
+		this.setState({open_login: false});
 	}
 
-	open(){
-		this.setState({open: true});
+	open_login(){
+		this.setState({open_login: true});
+	}
+
+	open_setting(){
+		this.setState({open_setting: true});
+	}
+
+	close_setting(){
+		this.setState({open_setting: false});
 	}
 
 	render(){
@@ -37,6 +47,14 @@ export default class floatbutton extends React.Component{
 		return(
 			<Menu effect={effect} method={method} position={pos}>
 		      <MainButton iconResting="ion-plus-round" iconActive="ion-close-round" />
+		      //only shows when login-ed
+		      <ChildButton 
+		      	disable={this.props.logined}
+		      	icon="ion-social-settingss"
+		      	label="Set up your sources"
+		      	href="#"
+		      	onClick={this.open_setting}
+		      />
 		      <ChildButton
 		        icon="ion-social-github"
 		        label="View on Github"
@@ -48,10 +66,11 @@ export default class floatbutton extends React.Component{
 		      <ChildButton
 		        icon="ion-log-in"
 		        label="Sign in to NewsHUB"
-		        onClick={this.open}
+		        onClick={this.open_setting}
 		      />
 
-		      <Signindialog show = {this.state.open} onHide = {this.close} />
+		      <Signindialog show = {this.state.open_login} onHide = {this.close_login} />
+		      <Settingdialog show ={this.state.open_setting} onHide = {this.close_setting} />
 		    </Menu>
 		)
 	}

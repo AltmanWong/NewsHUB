@@ -13,17 +13,20 @@ var hourlyCache = new ScheduledTask(schedule, apicaching);
 
 import {Meteor} from 'meteor/meteor';
 import {Cache} from '../imports/api/cache.js';
+import {Sources} from '../imports/api/soucres.js';
 import {HTTP} from 'meteor/http';	
 
 function apicaching(){
 	for(var i = 0 ; i < categories.length; i++){
 		try {
 		    var response = HTTP.get(sources_url + categories[i] + api_key).data;
+		    //Log down the sources data called from the API
+		    Sources.insert(response.sources?language=en&category);
 		    for(var j = 0; j < response.sources.length; j++){
 		     	try{
 		      		var articles = HTTP.get(article_url + response.sources[j].id + api_key).data;
 			        articles.category = response.sources[j].category;
-
+			        
 			        var dbCache = Cache.findOne({source: articles.source});
 			        if(dbCache === undefined){
 			       		console.log("INSERT: " + j + " " + articles.category + " " + articles.source);

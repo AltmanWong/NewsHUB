@@ -1,6 +1,6 @@
 import {Meteor} from 'meteor/meteor';
 import {createContainer} from 'meteor/react-meteor-data';
-import Settingdialog from '../accounts/settingDialog.jsx';
+import Settingdialog from '../accounts/settingdialog.jsx';
 import {Sources} from '../../api/sources.js';
 
 export default createContainer(({ params }) => {
@@ -9,7 +9,7 @@ export default createContainer(({ params }) => {
 
 	return {
 		loading,
-		dbCache: !loading ? Sources.find({category: categories[params]}).fetch() : []
+		dbCache: !loading ? Sources.find().fetch() : []
 	};
 
 }, Settingdialog);

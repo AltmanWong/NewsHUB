@@ -1,9 +1,9 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor'
-import { Modal, Button, Checkbox, FormGroup, form, ControlLabel, FormControl} from 'react-bootstrap'
+import { Input, Modal, Button, Checkbox, FormGroup, form, ControlLabel, FormControl} from 'react-bootstrap'
 
 var listofsources = [];
-var listofinputs = [][];
+var listofinputs = [];
 
 export default class settingDialog extends React.Component{
 	constructor(props){
@@ -12,42 +12,56 @@ export default class settingDialog extends React.Component{
 			date: props.dbCache,
 			loading: props.loading
 		}
+		this.selectedCheckboxes = new Set();
 	}
 
 	getSources(){
-		if(this.props.dbCache !== undefined && this.props.dbCache.length !== 0 && this.props.laoding == false){
+		listofsources = [];
+		console.log(this.props.dbCache);
+		if(this.props.dbCache !== undefined && this.props.dbCache.length !== 0 && this.props.loading == false){
 			for(var i = 0; i < this.props.dbCache.length; i++){
-				for(var j = 0; j < this.props.dbCache[i].length; j++){
-					listofsources.push(<Checkbox inputRef={(ref) => {this.listofinputs[i][j] = ref}}>this.props.dbCache[i][j].name</Checkbox>);
+				listofsources.push(<h1>{this.props.dbCache[i][0].category}</h1>);
+				for(var j = 0; j < Object.keys(this.props.dbCache[i]).length - 1; j++){
+					listofsources.push(<div>
+										<input 
+											type='checkbox'
+											name='user_selection_list' 
+											value={this.props.dbCache[i][j].name} 
+											ref="selections"
+											onChange={this.toggleChange(this.props.dbCache[i][j].name)}
+										/> 	
+										{this.props.dbCache[i][j].name}
+										<br />
+										</div>										
+						);		
 				}
-			
+			}
 		}
-		return (
-			<FormGroup>
-				{this.listofsources}
-			</FormGroup>
-		);
-
+		return listofsources;
 	}
 
-	submit(){
-		
+	toggleChange(name){
+		console.log(name);
+	}
+
+	changeList(){
 	}
 
 	render(){
 		return(
 			<Modal show={this.props.show} onHide = {this.props.onHide}>
 				<Modal.Header>
-					<Modal.Title>Select Contents Here<Modal.Title>
+					<Modal.Title>Select Contents Here</Modal.Title>
 				</Modal.Header>
 
 				<Modal.Body>
-					//Create a list of sources for the user to choose
-					{this.getSources}
+					<form>
+						{this.getSources()}
+					</form>
 				</Modal.Body>
 
 				<Modal.Footer>
-					<Button onClick={this.props.onHide}> Submit </Button>
+						<Button bsStyle='success' type='submit' onClick={this.changeList}>Submit</Button>
 				</Modal.Footer>
 			</Modal>
 		);

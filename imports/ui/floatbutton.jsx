@@ -2,7 +2,7 @@ import React from 'react';
 import { Menu, MainButton, ChildButton } from 'react-mfb'
 
 import Signindialog from '../ui/accounts/signindialog.jsx';
-import Settingdialog from '../ui/accounts/settingdialog.jsx';
+import Settingdialogcontainer from '../ui/container/source_container.jsx';
 
 import 'react-mfb/mfb.css'
 import '../stylesheets/ionicons.css'
@@ -12,11 +12,16 @@ export default class floatbutton extends React.Component{
 		super();
 		this.state = {
 			open_login: false,
-			open_setting: false;
+			open_setting: false
 		}
 		this.handleToggle = this.handleToggle.bind(this);
-		this.close = this.close.bind(this);
-		this.open = this.open.bind(this);
+		//Bind for the control of opening and closing for the login modal
+		this.close_login = this.close_login.bind(this);
+		this.open_login = this.open_login.bind(this);
+		//Bind for the contorl of opening and closing for the setting modal
+		this.open_setting = this.open_setting.bind(this);
+		this.close_setting = this.close_setting.bind(this);
+
 	}
 
 	handleToggle(){
@@ -47,10 +52,9 @@ export default class floatbutton extends React.Component{
 		return(
 			<Menu effect={effect} method={method} position={pos}>
 		      <MainButton iconResting="ion-plus-round" iconActive="ion-close-round" />
-		      //only shows when login-ed
 		      <ChildButton 
 		      	disable={this.props.logined}
-		      	icon="ion-social-settingss"
+		      	icon="ion-android-settings"
 		      	label="Set up your sources"
 		      	href="#"
 		      	onClick={this.open_setting}
@@ -64,13 +68,13 @@ export default class floatbutton extends React.Component{
 		        label="Like us on Facebook"
 		        href="#" />
 		      <ChildButton
-		        icon="ion-log-in"
+		        icon="ion-log-in" 
 		        label="Sign in to NewsHUB"
-		        onClick={this.open_setting}
+		        onClick={this.open_login}
 		      />
 
 		      <Signindialog show = {this.state.open_login} onHide = {this.close_login} />
-		      <Settingdialog show ={this.state.open_setting} onHide = {this.close_setting} />
+		      <Settingdialogcontainer show ={this.state.open_setting} onHide = {this.close_setting} />
 		    </Menu>
 		)
 	}

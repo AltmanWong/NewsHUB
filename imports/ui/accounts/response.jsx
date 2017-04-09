@@ -16,11 +16,11 @@ export default class response extends React.Component{
 		return(
 			<Modal show={this.props.show} onHide = {this.props.onHide}>
 				<Modal.Header>
-					<Modal.Title>Create Successful</Modal.Title>
+					<Modal.Title>{this.props.title}</Modal.Title>
 				</Modal.Header>
 
 				<Modal.Body>
-					Thank you for signing up in NewsHUB.! Please check your email for verification. Enjoy!
+					{this.props.description}
 				</Modal.Body>
 
 				<Modal.Footer>

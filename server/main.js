@@ -8,7 +8,7 @@ var categories = ["business", "entertainment", "gaming", "general", "music", "sc
 var language = ["en", "de", "fr"];
 var country = ["au", "de", "gb", "in", "it", "us"];
 
-var schedule = later.parse.recur().on(2).minute();
+var schedule = later.parse.recur().on(0).minute();
 var hourlyCache = new ScheduledTask(schedule, apicaching);
 
 import {Meteor} from 'meteor/meteor';
@@ -20,8 +20,11 @@ function apicaching(){
 	for(var i = 0 ; i < categories.length; i++){
 		try {
 		    var response = HTTP.get(sources_url + categories[i] + api_key).data;
+		    response.category = categories[i];
+
 		    //Log down the sources data called from the API'
 		    var dbSource = Sources.findOne({category: categories[i]});
+		   
 		    if(dbSource === undefined){
 		    	Sources.insert(response.sources);
 		    }

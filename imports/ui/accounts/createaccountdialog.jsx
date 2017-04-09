@@ -50,10 +50,12 @@ export default class createaccountdialog extends React.Component{
 			&& this.state.password_inputted == true){
 			//Insert the user data if all data are valid 
 			Accounts.createUser({
-				name: this.name.value,
+				username: this.name.value,
 				email: this.email.value,
 				password: this.password.value,
-				preferredfeed: []
+				profile:{
+					preferredfeed: [],
+				}
 			});
 
 			//open the response modal
@@ -109,7 +111,7 @@ export default class createaccountdialog extends React.Component{
 					</Modal.Footer>
 				</Modal>
 
-				<Response show={this.state.open} onHide={this.close} />
+				<Response show={this.state.open} onHide={this.close} title="Create Successful" description="Thank you for register in NewsHub.! Please verify your account by checking your email!" />
 			</div>
 		);
 	}

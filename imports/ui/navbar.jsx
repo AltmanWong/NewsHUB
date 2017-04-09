@@ -2,21 +2,46 @@ import React from 'react';
 import {Navbar, NavItem, Nav, Button, FormGroup, FormControl} from 'react-bootstrap';
 
 import Contentcontainer from '../ui/container/content_container.jsx';
+import Response from '../ui/accounts/response.jsx';
 
 export default class navbar extends React.Component{
 	constructor(){
 		super();
-		this.state = {key: 0};
+		this.state = {
+			key: 0,
+			username: "User",
+			open_response: false,
+		};
 		this.handleSelect = this.handleSelect.bind(this);
+		this.checkLogin = this.checkLogin.bind(this);
+		this.close_response = this.close_response(this);
 	}
 
 	handleSelect(selectedKey){
-		var newState = {};
-		newState['key'] = selectedKey;
-		this.setState(newState);
+		if(selectedKey === 8){
+			if(Meteor.user() === null){
+				this.setState({open_response: true});
+			}
+		}else{
+			var newState = {};
+			newState['key'] = selectedKey;
+			this.setState(newState);
+		}
+
 
 	}
 
+	checkLogin(){
+		if(Meteor.user() !== undefined){
+			console.log(Meteor.user());
+			this.setState({username: Meteor.user().emails[0].address});
+		}
+	}
+
+	close_response(){
+		this.setState({open_response: false});
+	}
+	
 	render(){
 		return (
 			<div>
@@ -37,10 +62,16 @@ export default class navbar extends React.Component{
 				      <NavItem eventKey={5} href="#" >SCIENCE AND NATURE</NavItem>
 				      <NavItem eventKey={6} href="#" >SPORTS</NavItem>
 				      <NavItem eventKey={7} href="#" >TECHNOLOGY</NavItem>
+				  	  <NavItem eventKey={8} href="#" >CUSTOM FEED</NavItem>
 				    </Nav>
+				    <Nav pullRight>
+				      <NavItem eventKey={9} href="#" onSelect={this.checkLogin} >{this.state.username}</NavItem>
+			     	</Nav>
 			    </Navbar.Collapse>
+
 			  </Navbar>
 				<Contentcontainer params = {this.state.key} />
+				<Response show={this.state.open} onHide={this.close} title="Please Sign-in" description="Please Sign-in to use this function" />
 			 </div>
 		)
 	}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal, Button, FormGroup, form, ControlLabel, FormControl} from 'react-bootstrap'
+import { Meteor } from 'meteor/meteor'
 
 import Createaccountdialog from '../accounts/createaccountdialog.jsx';
 import Response from '../accounts/response.jsx';
@@ -55,7 +56,7 @@ export default class signindialog extends React.Component{
 
 			this.props.onHide(this);
 
-			console.log("logged-in");
+			console.log(Meteor.user());
 		}
 
 

@@ -19,8 +19,12 @@ export default class navbar extends React.Component{
 
 	handleSelect(selectedKey){
 		if(selectedKey === 8){
-			if(Meteor.user() === null){
+			if(Meteor.user() === undefined){
 				this.setState({open_response: true});
+			}else{
+				var newState = {};
+				newState['key'] = selectedKey;
+				this.setState(newState);
 			}
 		}else{
 			var newState = {};
@@ -45,7 +49,7 @@ export default class navbar extends React.Component{
 	render(){
 		return (
 			<div>
-			  <Navbar>
+			  <Navbar className="bs-docs-nav">
 			    <Navbar.Header>
 			      <Navbar.Brand>
 			        <a href="#">NewsHUB </a>

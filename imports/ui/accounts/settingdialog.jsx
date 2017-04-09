@@ -25,6 +25,7 @@ export default class settingDialog extends React.Component{
 	getSources(){
 		listofsources = [];
 		if(Meteor.user() !== undefined){
+			console.log(Meteor.user());
 			listofinputs = Meteor.user().profile.preferredfeed;
 		}else{
 			listofinputs = [];
